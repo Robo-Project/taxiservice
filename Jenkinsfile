@@ -1,7 +1,4 @@
 pipeline {
-  parameters {
-      string(name: 'SEARCH', defaultValue: 'Robot', description: 'Search wikipedia')
-    }
   agent any
   stages {
     stage('setup') {
@@ -15,7 +12,7 @@ pipeline {
        sh "docker run --rm \
         -v `pwd`/data:/opt/robotframework/reports:Z \
         -v `pwd`/tasks:/opt/robotframework/tests:Z \
-        -e ROBOT_OPTIONS='--variable SEARCH:${SEARCH}' \
+        -v `pwd`/pythonscripts:/opt/robotframework/pythonscripts:Z \
         ppodgorsek/robot-framework"
       }
     }
