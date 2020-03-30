@@ -4,13 +4,6 @@ class TaxiService:
         self.length = 10
         self.price = 50
         self.time = 30
-
-    def drive_taxi(self):
-        results = []
-        results.append(self.length)
-        results.append(self.price)
-        results.append(self.time)
-
         
     def return_length(self):
         return self.length
