@@ -10,6 +10,9 @@ class TaxiService:
         drivers = ["Keke", "Jake", "Make", "Kake"]
         self.driver = drivers[random.randint(0, 3)]
 
+        """Car number"""
+        self.car_number = random.randint(1, 100)
+
         """Start timestamp"""
         self.start = datetime.now()
         self.start = self.start - timedelta(days=random.randint(0, 30))
@@ -17,7 +20,6 @@ class TaxiService:
         self.start = self.start - timedelta(minutes=random.randint(0, 60))
 
         """Length in kilometers"""
-        self.trip_succeeded = True
         x = random.randint(1, 10)
         if x > 9:
             self.length = random.randint(1, 1000)
@@ -46,12 +48,19 @@ class TaxiService:
 
         """Does trip fail"""
         failure = random.randint(1, 100)
+        self.reason_for_failure = ""
+        self.trip_succeeded = True
         if failure > 98:
             self.price = 0
             self.trip_succeeded = False
+            reasons = ["Not paid", "Covid", "UFO", "Crash", "Vehicle malfunction"]
+            self.reason_for_failure = reasons[random.randint(0, 4)]
 
     def return_driver(self):
         return self.driver
+
+    def return_car_number(self):
+        return self.car_number
 
     def return_start(self):
         return self.start
@@ -77,6 +86,9 @@ class TaxiService:
     def return_price(self):
         return self.price
 
+    def return_reason_for_failure(self):
+        return self.reason_for_failure
+
     def is_expensive_hours(self):
         begin_time = time(21, 0)
         end_time = time(5, 00)
@@ -93,12 +105,14 @@ for x in range(1, 10):
     print()
     print("TAXI")
     print("Driver:", taxi.return_driver())
+    print("Car number:", taxi.return_car_number())
     print("Start time:", taxi.return_start().time())
     print("Day:", taxi.return_start().isoweekday())
     print("Trip succeeded:", taxi.return_success())
+    if not taxi.return_success():
+        print("Reason for failure:", taxi.return_reason_for_failure())
     print("End time:", taxi.return_end().time())
     print("Duration:", taxi.return_time())
     print("Length:", taxi.return_length())
     print("Passengers:", taxi.return_passengers())
     print("Price:", taxi.return_price())
-
