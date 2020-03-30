@@ -11,4 +11,12 @@ class TaxiService:
         results.append(self.price)
         results.append(self.time)
 
-        return results
+        
+    def return_length(self):
+        return self.length
+
+    def return_price(self):
+        return self.price
+
+    def return_time(self):
+        return self.time

@@ -6,9 +6,14 @@ Library          Collections
 *** Tasks ***
 
 Drive taxi
-    @{results}      Create List
-    ${results}      Drive taxi
-    Log     ${results}
+    ${length}  Return length
+    ${price}  Return price
+    ${time}  Return time
+    Log  ${length}
+    Log  ${price}
+    Log  ${time}
+
+
 
 # Run taxi job
 # Keywords as method names
