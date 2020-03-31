@@ -107,7 +107,7 @@ class TaxiService:
         return json.dumps(self.__dict__)
 
 
-"""Test run"""
+"""Test run
 for x in range(1, 10):
     taxi = TaxiService()
     print()
@@ -124,4 +124,4 @@ for x in range(1, 10):
     print("Length:", taxi.return_length())
     print("Passengers:", taxi.return_passengers())
     print("Price:", taxi.return_price())
-    print(taxi.return_json())
+    print(taxi.return_json())"""
