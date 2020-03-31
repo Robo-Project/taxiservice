@@ -1,4 +1,5 @@
 from datetime import datetime, time, timedelta
+import json
 import random
 
 
@@ -98,6 +99,13 @@ class TaxiService:
         else:
             return begin_time <= check_time or check_time <= end_time
 
+    def return_json(self):
+        """Convert datetimes into isoformat"""
+        self.start = self.start.isoformat()
+        self.end = self.end.isoformat()
+        self.time = self.time
+        return json.dumps(self.__dict__)
+
 
 """Test run"""
 for x in range(1, 10):
@@ -116,3 +124,4 @@ for x in range(1, 10):
     print("Length:", taxi.return_length())
     print("Passengers:", taxi.return_passengers())
     print("Price:", taxi.return_price())
+    print(taxi.return_json())
