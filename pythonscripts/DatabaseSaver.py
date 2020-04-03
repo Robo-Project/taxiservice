@@ -6,6 +6,8 @@ from sqlalchemy import Boolean, Column, create_engine, DateTime, Float, Integer,
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
+import sys
+
 """Parser"""
 
 
@@ -62,6 +64,7 @@ def save_to_database(data_base_string, path_to_xml):
     hash_for_test_run = make_hash(xml_path)
 
     # Search for the foreign key
+    # do sqlalchemy sql statement to find id for foreign key
 
     taxi = parse_file(path_to_xml)
     taxi = TaxiDrive(driver=taxi['driver'],
@@ -73,14 +76,15 @@ def save_to_database(data_base_string, path_to_xml):
                      passengers=taxi['passengers'],
                      price=taxi['price'],
                      reason_for_failure=taxi['reason_for_failure'],
-                     trip_succeeded=taxi['trip_succeeded'])
+                     trip_succeeded=taxi['trip_succeeded']),
+
 
     session.add(taxi)
     session.commit()
     session.close()
 
 # Insert paths to test
-# db_string =
-# xml_path =
+db_string = sys.argv[1]
+xml_path = sys.argv[2]
 #
-# save_to_database(db_string, xml_path)
+save_to_database(db_string, xml_path)
