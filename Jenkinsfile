@@ -16,12 +16,16 @@ pipeline {
         ppodgorsek/robot-framework"
       }
     }
-   stage('dbbot') {
+   stage('dbsaving') {
       steps {
 	      sh "python3 -m dbbot.run \
 	      -b postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@172.17.0.1:5432/${POSTGRES_DB} \
 	      -k `pwd`/data/output.xml"
+        sh "python3 `pwd`/pythonscripts/DatabaseSaver.py \
+        postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@172.17.0.1:5432/${POSTGRES_DB} \
+        `pwd`/data/output.xml"
       }
+      
     }
   }
   post {

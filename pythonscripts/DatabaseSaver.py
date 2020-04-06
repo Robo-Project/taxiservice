@@ -2,9 +2,10 @@ from hashlib import sha1
 import json
 import xml.etree.ElementTree as ET
 
-from sqlalchemy import Boolean, Column, create_engine, DateTime, Float, Integer, String
+from sqlalchemy import Boolean, Column, create_engine, DateTime, Float, Integer, String, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.sql import text
 
 import sys
 
@@ -56,6 +57,7 @@ def save_to_database(data_base_string, path_to_xml):
         price = Column(Float)
         reason_for_failure = Column(String)
         trip_succeeded = Column(Boolean)
+        test_runs_id = Column(Integer)
 
     session = sessionmaker(db)
     session = session()
@@ -64,7 +66,15 @@ def save_to_database(data_base_string, path_to_xml):
     hash_for_test_run = make_hash(xml_path)
 
     # Search for the foreign key
-    # do sqlalchemy sql statement to find id for foreign key
+
+    stmt = text("select test_runs.id from test_runs "
+                " WHERE test_runs.hash = '" + hash_for_test_run + "';")
+
+    res = db.engine.execute(stmt)
+
+    result = ""
+    for row in res:
+        result = row[0]
 
     taxi = parse_file(path_to_xml)
     taxi = TaxiDrive(driver=taxi['driver'],
@@ -76,7 +86,8 @@ def save_to_database(data_base_string, path_to_xml):
                      passengers=taxi['passengers'],
                      price=taxi['price'],
                      reason_for_failure=taxi['reason_for_failure'],
-                     trip_succeeded=taxi['trip_succeeded']),
+                     trip_succeeded=taxi['trip_succeeded'],
+                     test_runs_id=result)
 
 
     session.add(taxi)
@@ -86,5 +97,4 @@ def save_to_database(data_base_string, path_to_xml):
 # Insert paths to test
 db_string = sys.argv[1]
 xml_path = sys.argv[2]
-#
 save_to_database(db_string, xml_path)
