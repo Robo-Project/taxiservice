@@ -24,7 +24,7 @@ class TaxiService:
         x = random.randint(1, 10)
         if x > 9:
             self.length = random.randint(1, 1000)
-        elif x > 6:
+        elif x > 8:
             self.length = random.randint(1, 100)
         else:
             self.length = random.randint(1, 10)
@@ -51,7 +51,7 @@ class TaxiService:
         failure = random.randint(1, 100)
         self.reason_for_failure = ""
         self.trip_succeeded = True
-        if failure > 98:
+        if failure > 70:
             self.price = 0
             self.trip_succeeded = False
             reasons = ["Not paid", "Covid", "UFO", "Crash", "Vehicle malfunction"]
