@@ -21,10 +21,10 @@ class TaxiService:
         self.start = self.start - timedelta(minutes=random.randint(0, 60))
 
         """Length in kilometers"""
-        x = random.randint(1, 10)
-        if x > 9:
+        x = random.randint(1, 100)
+        if x > 97:
             self.length = random.randint(1, 1000)
-        elif x > 8:
+        elif x > 80:
             self.length = random.randint(1, 100)
         else:
             self.length = random.randint(1, 10)
