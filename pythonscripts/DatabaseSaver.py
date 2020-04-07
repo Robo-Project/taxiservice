@@ -1,13 +1,13 @@
 from hashlib import sha1
 import json
+import sys
 import xml.etree.ElementTree as ET
 
-from sqlalchemy import Boolean, Column, create_engine, DateTime, Float, Integer, String, ForeignKey
+from sqlalchemy import (Boolean, Column, create_engine, DateTime, Float,
+                        Integer, String)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.sql import text
-
-import sys
 
 """Parser"""
 
@@ -47,9 +47,10 @@ def save_to_database(data_base_string, path_to_xml):
     class TaxiDrive(base):
         __tablename__ = 'taxi_drives'
 
+        xml_hash = Column(String, primary_key=True)
         driver = Column(String)
         car_number = Column(Integer)
-        start = Column(DateTime, primary_key=True)
+        start = Column(DateTime)
         length = Column(Float)
         time = Column(Float)
         end = Column(DateTime)
@@ -77,7 +78,8 @@ def save_to_database(data_base_string, path_to_xml):
         result = row[0]
 
     taxi = parse_file(path_to_xml)
-    taxi = TaxiDrive(driver=taxi['driver'],
+    taxi = TaxiDrive(xml_hash=hash_for_test_run,
+                     driver=taxi['driver'],
                      car_number=taxi['car_number'],
                      start=taxi['start'],
                      length=taxi['length'],
@@ -89,10 +91,10 @@ def save_to_database(data_base_string, path_to_xml):
                      trip_succeeded=taxi['trip_succeeded'],
                      test_runs_id=result)
 
-
     session.add(taxi)
     session.commit()
     session.close()
+
 
 # Insert paths to test
 db_string = sys.argv[1]
