@@ -3,3 +3,4 @@ pythonscripts/TaxiService.pyc
 pythonscripts/__pycache__/
 .idea/
 venv
+.vscode/
