@@ -50,10 +50,10 @@ def save_to_database(data_base_string, path_to_xml):
         xml_hash = Column(String, primary_key=True)
         driver = Column(String)
         car_number = Column(Integer)
-        startTime = Column(DateTime)
-        lengthOfDrive = Column(Float)
-        durationOfDrive = Column(Float)
-        endTime = Column(DateTime)
+        start_time = Column(DateTime)
+        length_of_drive = Column(Float)
+        duration_of_drive = Column(Float)
+        end_time = Column(DateTime)
         passengers = Column(Integer)
         price = Column(Float)
         reason_for_failure = Column(String)
@@ -81,10 +81,10 @@ def save_to_database(data_base_string, path_to_xml):
     taxi = TaxiDrive(xml_hash=hash_for_test_run,
                      driver=taxi['driver'],
                      car_number=taxi['car_number'],
-                     startTime=taxi['start'],
-                     lengthOfDrive=taxi['length'],
-                     durationOfDrive=taxi['time'],
-                     endTime=taxi['end'],
+                     start_time=taxi['start'],
+                     length_of_drive=taxi['length'],
+                     duration_of_drive=taxi['time'],
+                     end_time=taxi['end'],
                      passengers=taxi['passengers'],
                      price=taxi['price'],
                      reason_for_failure=taxi['reason_for_failure'],
