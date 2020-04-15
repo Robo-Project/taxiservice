@@ -6,14 +6,6 @@ Library          Collections
 *** Tasks ***
 
 Drive taxi
-    ${result}  return json
+    ${result}  Return Taxi Drive Details
     Log  ${result}
-
-*** Keywords ***
-
-Return And Log Length
-    
-# Run taxi job
-# Keywords as method names
-
 

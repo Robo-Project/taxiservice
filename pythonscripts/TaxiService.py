@@ -1,4 +1,5 @@
 from datetime import datetime, time, timedelta
+from dateutil.relativedelta import relativedelta
 import json
 import random
 
@@ -16,6 +17,7 @@ class TaxiService:
 
         """Start timestamp"""
         self.start = datetime.now()
+        self.start = self.start - relativedelta(months=random.randint(0, 12))
         self.start = self.start - timedelta(days=random.randint(0, 30))
         self.start = self.start - timedelta(hours=random.randint(0, 23))
         self.start = self.start - timedelta(minutes=random.randint(0, 60))
@@ -51,11 +53,22 @@ class TaxiService:
         failure = random.randint(1, 100)
         self.reason_for_failure = ""
         self.trip_succeeded = True
-        if failure > 70:
+        if failure > 97:
             self.price = 0
             self.trip_succeeded = False
             reasons = ["Not paid", "Covid", "UFO", "Crash", "Vehicle malfunction"]
-            self.reason_for_failure = reasons[random.randint(0, 4)]
+            randNr = random.randint(1, 100)
+            if randNr > 70:
+                self.reason_for_failure = reasons[0]
+            elif randNr > 60:
+                self.reason_for_failure = reasons[1]
+            elif randNr > 55:
+                self.reason_for_failure = reasons[2]
+            elif randNr > 20:
+                self.reason_for_failure = reasons[3]
+            else:
+                self.reason_for_failure = reasons[4]
+
 
     def return_driver(self):
         return self.driver
@@ -99,7 +112,7 @@ class TaxiService:
         else:
             return begin_time <= check_time or check_time <= end_time
 
-    def return_json(self):
+    def return_taxi_drive_details(self):
         """Convert datetimes into isoformat"""
         self.start = self.start.isoformat()
         self.end = self.end.isoformat()
@@ -107,21 +120,21 @@ class TaxiService:
         return json.dumps(self.__dict__)
 
 
-"""Test run
+# Test run
 for x in range(1, 10):
     taxi = TaxiService()
-    print()
-    print("TAXI")
-    print("Driver:", taxi.return_driver())
-    print("Car number:", taxi.return_car_number())
-    print("Start time:", taxi.return_start().time())
-    print("Day:", taxi.return_start().isoweekday())
-    print("Trip succeeded:", taxi.return_success())
-    if not taxi.return_success():
-        print("Reason for failure:", taxi.return_reason_for_failure())
-    print("End time:", taxi.return_end().time())
-    print("Duration:", taxi.return_time())
-    print("Length:", taxi.return_length())
-    print("Passengers:", taxi.return_passengers())
-    print("Price:", taxi.return_price())
-    print(taxi.return_json())"""
+#     print()
+#     print("TAXI")
+#     print("Driver:", taxi.return_driver())
+#     print("Car number:", taxi.return_car_number())
+    print("Start time:", taxi.return_start())
+#     print("Day:", taxi.return_start().isoweekday())
+#     print("Trip succeeded:", taxi.return_success())
+#     if not taxi.return_success():
+#         print("Reason for failure:", taxi.return_reason_for_failure())
+#     print("End time:", taxi.return_end().time())
+#     print("Duration:", taxi.return_time())
+#     print("Length:", taxi.return_length())
+#     print("Passengers:", taxi.return_passengers())
+#     print("Price:", taxi.return_price())
+#     print(taxi.return_taxi_drive_details())
