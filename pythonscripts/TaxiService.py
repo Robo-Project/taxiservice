@@ -121,13 +121,13 @@ class TaxiService:
 
 
 # Test run
-for x in range(1, 10):
-    taxi = TaxiService()
+# for x in range(1, 10):
+#     taxi = TaxiService()
 #     print()
 #     print("TAXI")
 #     print("Driver:", taxi.return_driver())
 #     print("Car number:", taxi.return_car_number())
-    print("Start time:", taxi.return_start())
+    # print("Start time:", taxi.return_start())
 #     print("Day:", taxi.return_start().isoweekday())
 #     print("Trip succeeded:", taxi.return_success())
 #     if not taxi.return_success():
