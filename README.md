@@ -5,10 +5,10 @@ This is a class that simulates taxi drives.
 Running it
 
 - first [simulates](https://github.com/Robo-Project/taxiservice/blob/master/pythonscripts/TaxiService.py) a taxi drive that is run through [Robot Framework](https://github.com/Robo-Project/taxiservice/blob/master/tasks/TaxiRobo.robot)
-- then logs related task metadata with [dbbot](https://github.com/robotframework/DbBot)
-- then uses [databasesaver.py](https://github.com/Robo-Project/taxiservice/blob/master/pythonscripts/DatabaseSaver.py) to create a new table called taxi_drives that has a foreign key to dbbot table test_runs ([dbbot tables](https://github.com/robotframework/DbBot/blob/master/doc/robot_database.md))
+- then logs related task metadata with [dbbot-sqlalchemy](https://github.com/pbylicki/DbBot-SQLAlchemy)
+- then uses [databasesaver.py](https://github.com/Robo-Project/taxiservice/blob/master/pythonscripts/DatabaseSaver.py) to create a new table called taxi_drives that has a foreign key to dbbot table test_runs ([dbbot-sqlalchemy tables](https://github.com/pbylicki/DbBot-SQLAlchemy/blob/master/doc/robot_database.md))
 
-DbBot proved not to be suitable for saving task related data. This is why we had to create our own dbsaver, that saves required data from the task. More about that [here](/documentation/dbbotreport.md)
+DbBot proved not to be suitable for saving task related data. This is why we had to create our own dbsaver, that saves required data from the task. More about that [here](https://github.com/Robo-Project/rpa_dashboard/blob/master/documentation/dbbotreport.md)
 
 ### Schema:
 
