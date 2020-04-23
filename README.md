@@ -29,3 +29,9 @@ price               | FLOAT    |          | price in eur
 reason_for_failure  | TEXT     |          | if drive failed, the reason
 trip_succeeded      | BOOLEAN  |          | trip succeeded or not
 test_runs_id        | INTEGER  |          | foreign key to test_runs.id
+
+### Dashboard queries and panels
+
+![alt text](documentation/taxidashboardphotos/taxi_dashboard.png "Dashboard")
+
+Detailed queries and information can be found [here](documentation/taxi_dashboard_queries.md)

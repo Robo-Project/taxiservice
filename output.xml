@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.6.9 on linux)" generated="20200417 14:15:18.097" rpa="true">
+<suite id="s1" name="TaxiRobo" source="/home/jonttu/kurssit/ohtuprojekti/taxiservice/tasks/TaxiRobo.robot">
+<test id="s1-t1" name="Drive taxi">
+<kw name="Return Taxi Drive Details" library="TaxiService">
+<doc>Convert datetimes into isoformat</doc>
+<assign>
+<var>${result}</var>
+</assign>
+<msg timestamp="20200417 14:15:18.144" level="INFO">${result} = {"driver": "Jake", "car_number": 39, "start": "2019-08-16T19:45:18.143607", "length": 1, "time": 15.238095238095237, "end": "2019-08-16T20:00:32.429321", "passengers": 6, "price": 8.49, "reason_for_fa...</msg>
+<status status="PASS" starttime="20200417 14:15:18.143" endtime="20200417 14:15:18.144"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${result}</arg>
+</arguments>
+<msg timestamp="20200417 14:15:18.144" level="INFO">{"driver": "Jake", "car_number": 39, "start": "2019-08-16T19:45:18.143607", "length": 1, "time": 15.238095238095237, "end": "2019-08-16T20:00:32.429321", "passengers": 6, "price": 8.49, "reason_for_failure": "", "trip_succeeded": true}</msg>
+<status status="PASS" starttime="20200417 14:15:18.144" endtime="20200417 14:15:18.144"></status>
+</kw>
+<status status="PASS" starttime="20200417 14:15:18.143" endtime="20200417 14:15:18.145" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200417 14:15:18.098" endtime="20200417 14:15:18.145"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tasks</stat>
+<stat pass="1" fail="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="TaxiRobo">TaxiRobo</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
