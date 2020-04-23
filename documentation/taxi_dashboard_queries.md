@@ -8,6 +8,8 @@ Default timeshift is 30 days. Total passengers per hour uses timeshift of 7 days
 
 ## Panels and queries
 
+![alt text](taxidashboardphotos/taxi_dashboard.png "Taxi dashboard")
+
 ### Total drives per day
 
 ![alt text](taxidashboardphotos/total_drives_per_day.png "Total drives per day")
